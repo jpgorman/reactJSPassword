@@ -1,0 +1,1 @@
+passwordInjector.bindView("container");

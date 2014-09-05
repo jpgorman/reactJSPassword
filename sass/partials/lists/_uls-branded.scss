@@ -1,0 +1,22 @@
+ul {
+  &.branded {
+    padding-left: $padding-mob;
+
+    li {
+      list-style: none;
+      position: relative;
+      padding-left: 2em;
+      padding-top: 0.08em;
+      min-height: 1.8em;
+
+      &:before {
+        content: '\e601';
+        font-family: 'mhicons';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1.25em;
+      }
+    }
+  }
+}

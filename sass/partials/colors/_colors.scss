@@ -1,0 +1,311 @@
+/*
+
+## Colors
+
+This is for a color-swatch, requires Compass at the moment.
+
+<ul class="swatch theme-colors">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+*/
+
+.clrBase {
+  background-color: $clrBase;
+  fill: $clrBase;
+  stroke: $clrBase;
+  color: $white;
+}
+.clrBase.dk1 {
+  background-color: $clrBase-dk1;
+  fill: $clrBase-dk1;
+  stroke: $clrBase-dk1;
+}
+.clrBase.dk2 {
+  background-color: $clrBase-dk2;
+  fill: $clrBase-dk2;
+  stroke: $clrBase-dk2;
+}
+.clrBase.dk3 {
+  background-color: $clrBase-dk3;
+  fill: $clrBase-dk3;
+  stroke: $clrBase-dk3;
+}
+.clrBase.lt1 {
+  background-color: $clrBase-lt1;
+  fill: $clrBase-lt1;
+  stroke: $clrBase-lt1;
+}
+.clrBase.lt2 {
+  background-color: $clrBase-lt2;
+  fill: $clrBase-lt2;
+  stroke: $clrBase-lt2;
+}
+.clrBase.lt3 {
+  background-color: $clrBase-lt3;
+  fill: $clrBase-lt3;
+  stroke: $clrBase-lt3;
+}
+.clrBase.lt3 {
+  background-color: $clrBase-lt4;
+  fill: $clrBase-lt4;
+  stroke: $clrBase-lt4;
+}
+
+.clrPrim {
+  background-color: $clrPrim;
+  fill: $clrPrim;
+  stroke: $clrPrim;
+  color: $white;
+}
+.clrPrim.dk1 {
+  background-color: $clrPrim-dk1;
+  fill: $clrPrim-dk1;
+  stroke: $clrPrim-dk1;
+}
+.clrPrim.dk2 {
+  background-color: $clrPrim-dk2;
+  fill: $clrPrim-dk2;
+  stroke: $clrPrim-dk2;
+}
+.clrPrim.dk3 {
+  background-color: $clrPrim-dk3;
+  fill: $clrPrim-dk3;
+  stroke: $clrPrim-dk3;
+}
+.clrPrim.lt1 {
+  background-color: $clrPrim-lt1;
+  fill: $clrPrim-lt1;
+  stroke: $clrPrim-lt1;
+}
+.clrPrim.lt2 {
+  background-color: $clrPrim-lt2;
+  fill: $clrPrim-lt2;
+  stroke: $clrPrim-lt2;
+}
+.clrPrim.lt3 {
+  background-color: $clrPrim-lt3;
+  fill: $clrPrim-lt3;
+  stroke: $clrPrim-lt3;
+}
+.clrPrim.lt4 {
+  background-color: $clrPrim-lt4;
+  fill: $clrPrim-lt4;
+  stroke: $clrPrim-lt4;
+}
+
+.clrSec {
+  background-color: $clrSec;
+  fill: $clrSec;
+  stroke: $clrSec;
+  color: $white;
+}
+.clrSec.dk1 {
+  background-color: $clrSec-dk1;
+  fill: $clrSec-dk1;
+  stroke: $clrSec-dk1;
+}
+.clrSec.dk2 {
+  background-color: $clrSec-dk2;
+  fill: $clrSec-dk2;
+  stroke: $clrSec-dk2;
+}
+.clrSec.dk3 {
+  background-color: $clrSec-dk3;
+  fill: $clrSec-dk3;
+  stroke: $clrSec-dk3;
+}
+.clrSec.lt1 {
+  background-color: $clrSec-lt1;
+  fill: $clrSec-lt1;
+  stroke: $clrSec-lt1;
+}
+.clrSec.lt2 {
+  background-color: $clrSec-lt2;
+  fill: $clrSec-lt2;
+  stroke: $clrSec-lt2;
+}
+.clrSec.lt3 {
+  background-color: $clrSec-lt3;
+  fill: $clrSec-lt3;
+  stroke: $clrSec-lt3;
+}
+.clrSec.lt4 {
+  background-color: $clrSec-lt4;
+  fill: $clrSec-lt4;
+  stroke: $clrSec-lt4;
+}
+
+.clrActive {
+  background-color: $clrActive;
+  fill: $clrActive;
+  stroke: $clrActive;
+  color: $white;
+}
+.clrActive.dk1 {
+  background-color: $clrActive-dk1;
+  fill: $clrActive-dk1;
+  stroke: $clrActive-dk1;
+}
+.clrActive.dk2 {
+  background-color: $clrActive-dk2;
+  fill: $clrActive-dk2;
+  stroke: $clrActive-dk2;
+}
+.clrActive.dk3 {
+  background-color: $clrActive-dk3;
+  fill: $clrActive-dk3;
+  stroke: $clrActive-dk3;
+}
+.clrActive.lt1 {
+  background-color: $clrActive-lt1;
+  fill: $clrActive-lt1;
+  stroke: $clrActive-lt1;
+}
+.clrActive.lt2 {
+  background-color: $clrActive-lt2;
+  fill: $clrActive-lt2;
+  stroke: $clrActive-lt2;
+}
+.clrActive.lt3 {
+  background-color: $clrActive-lt3;
+  fill: $clrActive-lt3;
+  stroke: $clrActive-lt3;
+}
+.clrActive.lt4 {
+  background-color: $clrActive-lt4;
+  fill: $clrActive-lt4;
+  stroke: $clrActive-lt4;
+}
+
+.clrHighlight {
+  background-color: $clrHighlight;
+  fill: $clrHighlight;
+  stroke: $clrHighlight;
+  color: $white;
+}
+.clrHighlight.dk1 {
+  background-color: $clrHighlight-dk1;
+  fill: $clrHighlight-dk1;
+  stroke: $clrHighlight-dk1;
+}
+.clrHighlight.dk2 {
+  background-color: $clrHighlight-dk2;
+  fill: $clrHighlight-dk2;
+  stroke: $clrHighlight-dk2;
+}
+.clrHighlight.dk3 {
+  background-color: $clrHighlight-dk3;
+  fill: $clrHighlight-dk3;
+  stroke: $clrHighlight-dk3;
+}
+.clrHighlight.lt1 {
+  background-color: $clrHighlight-lt1;
+  fill: $clrHighlight-lt1;
+  stroke: $clrHighlight-lt1;
+}
+.clrHighlight.lt2 {
+  background-color: $clrHighlight-lt2;
+  fill: $clrHighlight-lt2;
+  stroke: $clrHighlight-lt2;
+}
+.clrHighlight.lt3 {
+  background-color: $clrHighlight-lt3;
+  fill: $clrHighlight-lt3;
+  stroke: $clrHighlight-lt3;
+}
+.clrHighlight.lt4 {
+  background-color: $clrHighlight-lt4;
+  fill: $clrHighlight-lt4;
+  stroke: $clrHighlight-lt4;
+}
+
+.clrAlt {
+  background-color: $clrAlt;
+  fill: $clrAlt;
+  stroke: $clrAlt;
+  color: $white;
+}
+.clrAlt.dk1 {
+  background-color: $clrAlt-dk1;
+  fill: $clrAlt-dk1;
+  stroke: $clrAlt-dk1;
+}
+.clrAlt.dk2 {
+  background-color: $clrAlt-dk2;
+  fill: $clrAlt-dk2;
+  stroke: $clrAlt-dk2;
+}
+.clrAlt.dk3 {
+  background-color: $clrAlt-dk3;
+  fill: $clrAlt-dk3;
+  stroke: $clrAlt-dk3;
+}
+.clrAlt.lt1 {
+  background-color: $clrAlt-lt1;
+  fill: $clrAlt-lt1;
+  stroke: $clrAlt-lt1;
+}
+.clrAlt.lt2 {
+  background-color: $clrAlt-lt2;
+  fill: $clrAlt-lt2;
+  stroke: $clrAlt-lt2;
+}
+.clrAlt.lt3 {
+  background-color: $clrAlt-lt3;
+  fill: $clrAlt-lt3;
+  stroke: $clrAlt-lt3;
+}
+.clrAlt.lt4 {
+  background-color: $clrAlt-lt4;
+  fill: $clrAlt-lt4;
+  stroke: $clrAlt-lt4;
+}
+
+
+.swatch {
+	clear: both;
+	float: left;
+	max-width: 640px;
+	li {
+		border: 1px solid black;
+		border-radius: 8px;
+		float: left;
+		height: 120px;
+		list-style: none;
+		margin: 0 4px 4px 0;
+		width: 120px;
+	}
+}
+
+.theme-colors {
+	li {
+		background-color: $clrPrim;
+		&:nth-child(2) {
+			background-color: $clrSec;
+		}
+		&:nth-child(3) {
+			background-color: $clrBase;
+		}
+		&:nth-child(4) {
+			background-color: $clrActive;
+		}
+		&:nth-child(5) {
+			background-color: $clrAlt;
+		}
+		&:nth-child(6) {
+			clear: both;
+			background-color: $clrHighlight;
+		}
+		&:nth-child(7) {
+			background-color: $grey;
+		}
+	}
+}
+

@@ -1,0 +1,16 @@
+@mixin mhicon($size,$posx,$posy2) {
+
+  width: $size;
+  height: $size;
+  left: $posx;
+  bottom: $posy2;
+  z-index: -1;
+
+  background: {
+    color: transparent;
+    image: url('../../img/mhicon.svg');
+    position: 0 0;
+    repeat: no-repeat;
+    size: $size $size;
+  }
+}

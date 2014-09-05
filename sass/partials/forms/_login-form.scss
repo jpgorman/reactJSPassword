@@ -1,0 +1,23 @@
+.form {
+  &.logReg {
+    @include column(8);
+    display: block;
+    float: none;
+    margin: $padding auto;
+    min-width: 300px;
+    max-width: 600px;
+    border-radius: 0;
+
+    fieldset {
+      overflow: visible;
+      // background: $clrBase-dk1;
+      @include color-opacity($clrBase-dk1, 0.75, background);
+      color: $white;
+      border-radius: 0 ($border-radius * 3) ($border-radius * 3) 0;
+
+      h4 {
+        color: $white;
+      }
+    }
+  }
+}

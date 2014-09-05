@@ -1,0 +1,13 @@
+@mixin background-fill {
+    background-color: transparent;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+@mixin background-cover {
+  background-color: transparent;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

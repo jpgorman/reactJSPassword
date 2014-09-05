@@ -1,0 +1,71 @@
+.table {
+  display: block;
+  margin: 0 0 $padding 0;
+
+  &:last-child {
+    .table-cell {
+      border-bottom-width: 0px;
+    }
+  }
+
+  &.two-columns {
+    .table-row {
+      .table-cell {
+        @include column-no-gutter(6);
+
+        &.span-two {
+          @include column-no-gutter(12);
+        }
+      }
+    }
+  }
+
+  &.three-columns {
+    .table-row {
+      .table-cell {
+        @include column-no-gutter(4);
+
+        &.span-two {
+          @include column-no-gutter(8);
+        }
+      }
+    }
+  }
+
+  &.four-columns {
+    .table-row {
+      .table-cell {
+        @include column-no-gutter(3);
+
+        &.span-two {
+          @include column-no-gutter(6);
+        }
+      }
+    }
+  }
+
+  .table-row {
+    @include row-no-gutter(12);
+  }
+}
+
+.table-cell {
+  display: table-cell;  
+}
+
+.table-cell {
+  padding: $padding;
+  border-width: 1px;
+  border-style: dashed;
+  background: $white;
+  font-weight: 500;
+  @include color-opacity(black, 0.1, border-color);
+
+  &:first-child {
+    border-left-width: 0px;
+  }
+
+  &:last-child {
+    border-right-width: 0px;
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+css/src/app.css
+css/src/app.css.map
+css/dist/app.css
+*.map
+Gemfile.lock
+.idea/

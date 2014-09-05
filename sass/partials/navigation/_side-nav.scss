@@ -1,0 +1,189 @@
+nav.sideNav {
+  @include column-no-gutter(3);
+  @include padding-gutter();
+  background-color: $clrBase-dk1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  margin-left: -25%;
+  @include transition(0.5s, 0);
+  z-index: 20000;
+  overflow-y: scroll;
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: {
+      image: url('../img/ui/banner-dawn-blurred2.jpg');
+      position: 50% 50%;
+      repeat: no-repeat;
+      size: cover;
+    }
+    opacity: 0.35;
+    z-index: -1;
+  }
+
+  .close {
+    display: block;
+    text-decoration: none;
+    position: absolute;
+    right: ($padding-mob - 5px);
+    top: ($padding-mob - 5px);
+    font-size: 20px;
+    line-height: 18px;
+    padding: 5px;
+    height: 26px;
+    opacity: 0.5;
+    color: $white;
+    @include transition(0.2s, 0);
+
+    &:hover {
+      opacity: 1;
+      @include transition(0.2s, 0);
+    }
+
+    &:before {
+      content: $ionicon-var-close;
+      font-family: 'Ionicons';
+    }
+
+  }
+
+  * {
+    color: $white;
+  }
+
+  ul {
+
+    li {
+
+      // border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+
+      a {
+        display: block;
+        text-decoration: none;
+        font-size: 110%;
+        @include padding-gutter(10px);
+        @include transition(0.2s,0s);
+
+        &:after {
+          content: '\203a';
+          font-weight: bold;
+          margin-left: 5px;
+          @include transition(0.2s,0s);
+        }
+
+        &:hover {
+          @include transition(0.2s,0s);
+          @include color-opacity($white, 0.2, background);
+        }
+
+        &:hover::after {
+          margin-left: 10px;
+          @include transition(0.2s,0s);
+        }
+
+        &.highlighted {
+          font-weight: bold;
+          @include color-opacity($black, 0.2, background);
+          // color: $clrPrim;
+          // margin-right: (-2 * $padding);
+        }
+
+        &.modalToggle {
+          &:after {
+            content: $ionicon-var-share;
+            font-family: 'Ionicons';
+            font-weight: normal;
+          }
+        }
+
+        &.notdone {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    hr {
+      height: 0;
+      background: none;
+      border: none;
+      border-top: 1px dashed rgba(0, 0, 0, 0.3);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+  }
+
+}
+
+.menuActive nav.sideNav {
+  margin-left: 0;
+  @include transition(0.5s, 0);
+}
+
+@include mq(768px, max) {
+  nav.sideNav {
+    position: fixed;
+    @include column-no-gutter(12);
+    z-index: 20000;
+    left: -100%;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    @include color-opacity($clrBase-dk1, 0.9, background-color);
+    @include transition(0.5s, 0);
+
+    ul {
+      padding: 0;
+
+      li {
+
+        a {
+
+          &.highlighted {
+            color: $clrLight;
+          }
+        }
+      }
+    }
+  }
+
+  .menuActive {
+
+    .sideNav {
+      left: 0%;
+      @include transition(0.5s, 0s);
+    }
+    .mainPage {
+      position: relative;
+      left: 100%;
+      @include transition(0.3s, 0.2s);
+    }
+    nav.primaryMenu {
+      left: 100%;
+      right: -100%;
+      @include transition(0.3s, 0.2s);
+    }
+  }
+}
+
+@include mq(769px, min) {
+
+  nav.sideNav {
+    &:hover {
+      background-color: $clrBase-dk1;
+    }
+  }
+}
+
+@include mq(1025px, min) {
+  .sideNav {
+    ul {
+      @include padding-gutter();
+    }
+  }
+}

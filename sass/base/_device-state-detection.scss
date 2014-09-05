@@ -1,0 +1,25 @@
+.state-indicator {
+	position: absolute;
+	top: -999em;
+	left: -999em;
+	z-index: 1;
+}
+//.state-indicator:before { content: 'desktop'; }
+
+/* small desktop */
+@media all and (max-width: 1200px) {
+	.state-indicator {z-index: 2;}
+    //.state-indicator:before { content: 'small-desktop'; }
+}
+
+/* tablet */
+@media all and (max-width: 1024px) {
+	.state-indicator {z-index: 3;}
+    //.state-indicator:before { content: 'tablet'; }
+}
+
+/* mobile phone */
+@media all and (max-width: 780px) {
+	.state-indicator {z-index: 4;}
+   // .state-indicator:before { content: 'mobile'; }
+}

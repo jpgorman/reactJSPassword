@@ -1,0 +1,13 @@
+@mixin fadeIn($length,$delay) {
+  opacity: 0;
+  @include vendor-prefix(animation,fadeIn $length ease-in-out $delay 1 forwards);
+}
+
+@mixin fadeInLow($length,$delay) {
+  opacity: 0;
+  @include vendor-prefix(animation,fadeInLow $length ease-in-out $delay 1 forwards);
+}
+
+@mixin transition($length,$delay) {
+  @include vendor-prefix(transition,all $length ease-in-out $delay);
+}

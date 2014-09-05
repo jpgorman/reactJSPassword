@@ -1,0 +1,79 @@
+.help {
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    z-index: 2;
+    padding: $padding;
+    background: $tooltip-colour;
+
+    &.active {
+      display: block;
+    }
+
+    &.example {
+      opacity: 0;
+      left: 50%;
+      top: 50%;
+      margin-top: ($mhIcon-size / 2) + (4 * $padding);
+      @include fadeIn(0.5s, ($fadeIn-delay + 4s));
+    }
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 10px;
+      top: -7px;
+      background: $tooltip-colour;
+      z-index: -1;
+      @include vendor-prefix(transform, skew(0deg, 35deg));
+    }
+
+    .close {
+      display: block;
+      text-decoration: none;
+      position: absolute;
+      right: ($padding-mob - 10px);
+      top: ($padding-mob - 10px);
+      font-size: 15px;
+      line-height: 12px;
+      padding: 5px;
+      height: 21px;
+      opacity: 0.5;
+      color: $greyblue;
+      @include transition(0.2s, 0);
+
+      &:hover {
+        opacity: 1;
+        @include transition(0.2s, 0);
+      }
+
+      &:before {
+        content: $ionicon-var-close;
+        font-family: 'Ionicons';
+      }
+    }
+  }
+}
+
+@include mq(768px, max) {
+  .help {
+    .tooltip {
+      padding: $padding-mob;
+      &:before {
+        @include vendor-prefix(transform, rotate(45deg));
+        left: 50%;
+        margin-left: -10px;
+      }
+
+      &.example {
+        left: 10%;
+        right: 10%;
+      }
+    }
+  }
+}

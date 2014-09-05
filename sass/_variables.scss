@@ -1,0 +1,236 @@
+// -------------------------------------
+//    variables
+// -------------------------------------
+
+
+
+// -- max-page-width -------------------
+
+	@mixin page-width {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+// -- document font declarations -------
+
+	$doc-font-size: 13px;
+	$doc-line-height: 20.5px;
+
+// -- common margin --------------------
+
+    $tile-margin: 1%;
+    $tile-vertical-margin: 10px;
+    $button-margin: 10px;
+
+// -- padding --------------------------
+
+    $padding: 20px;
+    $padding-mob: 12px;
+    $padding-input: 10px;
+    $padding-tile: 15px;
+    $padding-tile-mob: 10px;
+
+// -- positional offsets ---------------
+    
+    $pos-top: $doc-font-size * 0.8;
+    $pos-left: $doc-font-size * 0.8;
+
+// -- border radius --------------------
+
+    $border-radius: 3px;
+    $border-radius-form: 0 3px 3px 0;
+
+// -- shading --------------------
+
+    $subtle-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08);
+    $button-shading: inset 0 -5px 20px rgba(0, 0, 0, 0.025), inset 0 5px 20px rgba(255, 255, 255, 0.15);
+    $button-shading-dark: inset 0 -5px 20px rgba(0, 0, 0, 0.15), inset 0 5px 20px rgba(255, 255, 255, 0.1);
+    $button-shading-active: inset 0 5px 20px rgba(0, 0, 0, 0.1);
+
+// -- colours -------------------------
+
+	$white: #ffffff;
+	$black: #000000;
+    $lightgrey: #eeeeee;
+    $grey: #404040;
+    $blue: #10527a;
+    $greyblue: #8499a6;
+    $clrMomentum: #e11b22;
+
+    $clrBase: #204760;
+    $clrBase-dk1: #07324e;
+    $clrBase-dk2: #001938;
+    $clrBase-dk3: #00092b;
+    $clrBase-lt1: #244f6b;
+    $clrBase-lt2: #285978;
+    $clrBase-lt3: #2e668a;
+    $clrBase-lt4: #3576a0;
+
+    $clrPrim: #3fa9eb;
+    $clrPrim-dk1: #299fe9;
+    $clrPrim-dk2: #0f93e6;
+    $clrPrim-dk3: #0084e2;
+    $clrPrim-lt1: #5cb6ee;
+    $clrPrim-lt2: #79c3f1;
+    $clrPrim-lt3: #96d0f4;
+    $clrPrim-lt4: #b2ddf7;
+
+    $clrSec: #10527a;
+    $clrSec-dk1: #003e6b;
+    $clrSec-dk2: #002759;
+    $clrSec-dk3: #00184d;
+    $clrSec-lt1: #125b88;
+    $clrSec-lt2: #146799;
+    $clrSec-lt3: #1775af;
+    $clrSec-lt4: #1b89cb;
+
+    $clrLight: #ccebff;
+    $clrLight-dk1: #c3e7ff;
+    $clrLight-dk2: #b5e2ff;
+    $clrLight-dk3: #a2dbff;
+    $clrLight-lt1: #d4eeff;
+    $clrLight-lt2: #dbf1ff;
+    $clrLight-lt3: #e3f4ff;
+    $clrLight-lt4: #ebf7ff;
+
+    $clrActive: #74ba17;
+    $clrActive-dk1: #64b200;
+    $clrActive-dk2: #51a900;
+    $clrActive-dk3: #45a300;
+    $clrActive-lt1: #81cf1a;
+    $clrActive-lt2: #91e91d;
+    $clrActive-lt3: #a6ff21;
+    $clrActive-lt4: #c1ff26;
+
+    $clrHighlight: #ff6a00;
+    $clrHighlight-dk1: #ff5900;
+    $clrHighlight-dk2: #ff4500;
+    $clrHighlight-dk3: #ff3800;
+    $clrHighlight-lt1: #ff7600;
+    $clrHighlight-lt2: #ff9800;
+    $clrHighlight-lt3: #ffb100;
+    $clrHighlight-lt4: #ffb100;
+
+    $clrAlt: #944776;
+    $clrAlt-dk1: #883266;
+    $clrAlt-dk2: #791954;
+    $clrAlt-dk3: #700948;
+    $clrAlt-lt1: #a54f83;
+    $clrAlt-lt2: #b95994;
+    $clrAlt-lt3: #d466a9;
+    $clrAlt-lt4: #f776c5;
+
+    $clrWarn: #8c0000;
+
+    $clrTimeBorder: $clrBase-lt4;
+    $clrTile: $white;
+    $clrTileDark: $clrBase-dk1;
+    $clrBase-overlay: darken($clrBase, 10%);
+    $formHighlight: #fff2cc;
+
+// -- Tiles ----------------------------
+
+    $tile-aspect-ratio: 0.75;
+    $tile-large-aspect-ratio: 0.5;
+    $tile-aspect-ratio-round: 1;
+
+// -- typography -----------------------
+
+	$body-font: 'Got', Gotham, Helvetica, sans-serif;
+	$header-font: $body-font;
+    $condensed: -0.05em;
+    $expanded: 0.1em;
+
+// -- links ----------------------------
+
+	$link-color: $clrPrim-dk3;
+	$link-color-hover: darken($clrPrim-dk3, 10);
+	$link-color-visited: $clrPrim-dk3;
+	$link-color-focus: darken($clrPrim-dk3, 10);
+
+// -- errors & info --------------------
+
+	$success-color: $clrActive-dk3;
+	$info-color: $clrBase-lt3;
+	$warning-color: $clrWarn;
+	$danger-color: $clrWarn;
+
+// -- labels, copy-classes, alerts -----
+
+	$default-color: #999999;
+	$muted-color: #F3F3F3;
+	$primary-color: #428BCA;
+
+// -- forms ----------------------------
+
+    $form-row-height: 45px;
+
+// --- selection colours ---------------
+
+	$selection: $link-color;
+	$selection-text: #FFF;
+
+// -- button colors --------------------
+
+	$button-color: $white;
+	$button-bg-color: $clrPrim;
+
+// -- Border Radius --------------------
+
+	$radius-sml: 4px;
+	$radius-med: 8px;
+	$radius-lrg: 12px;
+
+// -- Forms ----------------------------
+
+    $form-help-width: 50%;
+
+// -- Miscellaneous Element config -----
+
+    $timeline-border-width: 4px;
+    $timeline-arrow-size: 12px;
+    $timeline-icon-ratio: 5;
+
+    $special-p-icon-size: 2.5em;
+    $special-p-border-width: 4px;
+    $special-p-padding-left: $special-p-icon-size * 1.5;
+    $mhIcon-size: 75px;
+    $spinner-speed: 1.5s;
+    $fadeIn-delay: 5s;
+
+    $tooltip-colour: $white;
+
+// -- Logos ----------------------------
+
+    $logo-hsbc: url('../../img/logos/partner-hsbc2-colour.svg');
+    $logo-amex: url('../../img/logos/partner-americanexpress-colour.svg');
+    $logo-lloyds: url('../../img/logos/partner-lloyds-banking-group-colour.svg');
+    $logo-momentum: url('../../img/logos/partner-momentum-colour.svg');
+
+// -- Media Queries --------------------
+
+	$tiny           :  320;
+	$smaller        :  480;
+	$small          :  600;
+	$medium         :  760;
+	$regular        :  900;
+	$large          : 1100;
+	$extra-large    : 1300;
+
+	// A list of breakpoints
+	// When generating a placeholder,
+	// The same placeholder will be generated in every breakpoint
+	$breakpoints: (tiny 320), (smaller 480), (small 600), (medium 760), (regular 900), (large 1100), (extra-large 1300);
+
+
+
+// -- flow -----------------------------
+
+
+// -- switch on/off modules, vendors, gem imports ---
+
+    $_use-font-awesome : false;
+    $_use-ionicons : true;
+	$_use-prism : false;
+    $_use-girder : false; // girder grid system
+    $_use-semantic_grid : true; // semantic grid

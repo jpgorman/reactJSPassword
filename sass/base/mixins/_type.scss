@@ -1,0 +1,224 @@
+			
+// webfont load fade in
+// by default all of the main text elements are included 
+// example : @include js-font-load($additional: ':not(.slide > li)');
+// output... um... to much to stick here... 
+
+@mixin js-font-load(
+	$list: $_default_js_font_class, 
+	$additional: false) {
+
+	%off{
+		opacity: 0; //opacity mixin not used due to ie8 filter issues
+	}
+
+	%on {
+		opacity: 1;
+	}
+
+	%trans {
+		@include transition(opacity 1s);
+	}
+	
+	//create a variable
+	$all: null;
+	
+	@if $additional != false {
+		//if the addtional value is not false, then join the two values/lists together
+		$all : append($list,$additional);
+	} @else {
+		$all : $list;
+	}
+	
+	@each $item in $all {
+		.js {
+			&.csstransitions {
+				#{$item} {
+					@extend %off;
+				}
+				&.wf-fallback,
+				&.wf-inactive,
+				&.wf-active {
+					#{$item} {
+						@extend %on;
+					}
+				}
+				
+			}
+			&.csstransitions {
+				#{$item} {
+					@extend %trans;	
+				}
+			}
+		}
+	}
+}	
+
+
+
+//  count through heading values, using a start and finish count 
+//  example
+//  @include headings(1 4) {
+//  	color: blue;
+//  }
+//  
+//  output:
+//  h1,h2,h4,h5 {
+//  	color: blue;
+//  }
+
+
+@mixin headings($args) {
+
+	$random: random(100);
+	%u#{$random} {
+		@content;
+	}
+	
+	$from: null;
+	$to: null;
+	
+	@if length($args) == 1 {
+		@warn "Really, using this mixin to style only one heading, get out."
+	} @else {
+		
+		$from: nth($args,1);
+		$to: nth($args,2);
+		
+		@for $i from $from through $to {
+			
+			h#{$i},.heading-#{$i} {
+				@extend %u#{$random};
+			}
+				
+		}
+		
+	}
+	
+}
+
+//  style any set of headings, pass in the number values
+//  example
+//  @include hx(1 4 5) {
+//  	color: blue;
+//  }
+//  
+//  output:
+//  h1,h4,h5 {
+//  	color: blue;
+//  }
+
+@mixin hx(
+	$list: 1 2 3 4 5 6) {
+	
+	$random: random(100);
+	%u#{$random} {
+		@content;
+	}
+	
+	@each $item in $list {
+	    h#{$item},.heading-#{$item} {
+			@extend %u#{$random};
+	    }
+	}
+}
+
+
+
+// Font face mixin
+@mixin font-face(
+	$font-family, 
+	$font-url, 
+	$font-name) {
+	
+    @font-face {
+        font: {
+            family: $font-family;
+            style: normal;
+            weight: normal;
+        }
+        src: url($font-url + '/' + $font-name + '.eot') format('eot'), 
+             url($font-url + '/' + $font-name + '.woff') format('woff'), 
+             url($font-url + '/' + $font-name + '.ttf')  format('truetype'),
+             url($font-url + '/' + $font-name + '.svg#' + $font-name) format('svg');
+    }
+}
+
+//font awesome mixins
+
+@mixin fa-get() {
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin fa-set(
+	$char:false) {
+	display: inline-block;
+	@if $char != false {
+		&:before {
+			@include fa-get();
+			@content;
+			content: $char;
+		}
+	}
+}
+
+//font awesome mixins
+
+@mixin ion-get() {
+	font-family: $ionicons-font-family;
+ 	font-weight: normal;
+ 	font-style: normal;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin ion-set($char:false) {
+	display: inline-block;
+	@if $char != false {
+		&:before {
+			@include ion-get();
+			@content;
+			content: $char;
+		}
+	}
+}
+
+
+//mixin for styling the number in number lists (eg ol)
+// example usage:
+//	 ol {
+//		display: block;
+//	 	@include fancy-ol($counter: ol-counter) {
+//			 background-color: $_brand;
+//			 display: inline-block;
+//			 color: $_white;
+//			 width: 22px;
+//			 height: 22px;
+//			 vertical-align: middle;
+//			 text-align: center;
+//			 padding-top: 3px;
+//			 margin-right: 9px;
+//	 	}
+//	 }
+	 
+@mixin fancy-ol(
+	$children: li, 
+	$counter: ol-counter) {
+	
+	counter-reset: $counter;
+	& > #{$children} {
+		&:before {
+			 content: counter($counter);
+			 counter-increment: $counter;
+			 @content;
+		}
+	}	
+}
