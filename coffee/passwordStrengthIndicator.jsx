@@ -11,7 +11,9 @@ var PasswordStrengthIndicator = React.createClass({
     },
     handleUpdate: function (data) {
 
+        // retrieve passwordStength data from Model
         passwordMeta = data.get('strength');
+        // apply to this classes state
         this.setState({label:passwordMeta.label, cls:passwordMeta.messageKey});
     },
     componentDidMount: function () {

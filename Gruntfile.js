@@ -109,10 +109,13 @@ module.exports = function(grunt) {
       // -------------------------------------------------------------------
       react: {
         "js/jsx-build.js" : [
+          "coffee/button.jsx",
           "coffee/input.jsx",
           "coffee/label.jsx",
           "coffee/passwordStrengthIndicator.jsx",
           "coffee/row.jsx",
+          "coffee/message.jsx",
+          "coffee/form.jsx",
           "coffee/passwordController.jsx"
         ]
       },
