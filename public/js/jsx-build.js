@@ -2,12 +2,12 @@
 
 var Button = React.createClass({displayName: 'Button',
 
-    handleChange: function (event) {
-     
+    handleChange: function (e) {
+
+      e.preventDefault();
+      
       // call the save event in the controller
       this.props.save();
-
-      return false;
 
     },
     render : function(){
@@ -134,7 +134,7 @@ var Form = React.createClass({displayName: 'Form',
 });
 /** @jsx React.DOM */
 var FormViewModel = Backbone.Model.extend({
-
+      urlRoot: '/api/nerds/',
       validate: function(attrs, opts){
         if (!attrs.name ){
           return "Please add a name!"
@@ -150,7 +150,7 @@ var FormViewModel = Backbone.Model.extend({
     });
 
 var PasswordController = React.createClass({displayName: 'PasswordController',
-
+      
       viewModel: new FormViewModel({
         name: "",
         password: "",
@@ -169,6 +169,10 @@ var PasswordController = React.createClass({displayName: 'PasswordController',
       },
 
       componentDidMount: function () {
+        // fetch from server
+        this.viewModel.fetch();
+        console.log("componentDidMount")
+
         // provide the subscription to the consumer here
         this.viewModel.on("change:password", this.checkPassStrength, this);
 

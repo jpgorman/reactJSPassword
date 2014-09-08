@@ -1,0 +1,6 @@
+default:
+	- 'concurrent'
+cw:
+  - 'coffee'
+sprites:
+  - 'sprite'

@@ -2,12 +2,12 @@
 
 var Button = React.createClass({
 
-    handleChange: function (event) {
-     
+    handleChange: function (e) {
+
+      e.preventDefault();
+      
       // call the save event in the controller
       this.props.save();
-
-      return false;
 
     },
     render : function(){

@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var FormViewModel = Backbone.Model.extend({
-
+      urlRoot: '/api/nerds/',
       validate: function(attrs, opts){
         if (!attrs.name ){
           return "Please add a name!"
@@ -16,7 +16,7 @@ var FormViewModel = Backbone.Model.extend({
     });
 
 var PasswordController = React.createClass({
-
+      
       viewModel: new FormViewModel({
         name: "",
         password: "",
@@ -35,6 +35,10 @@ var PasswordController = React.createClass({
       },
 
       componentDidMount: function () {
+        // fetch from server
+        this.viewModel.fetch();
+        console.log("componentDidMount")
+
         // provide the subscription to the consumer here
         this.viewModel.on("change:password", this.checkPassStrength, this);
 
