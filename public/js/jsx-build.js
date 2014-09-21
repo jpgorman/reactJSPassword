@@ -100,19 +100,18 @@ var Row = React.createClass({displayName: 'Row',
 /** @jsx React.DOM */
 var Message = React.createClass({displayName: 'Message',
 		
-		getInitialState: function() {
+	getInitialState: function() {
         return {
             message : ''
         };
     },
-		handleUpdate: function (model) {
-			console.log(JSON.stringify(model))
+	handleUpdate: function (model) {
       // stringify the contents of the model
       this.setState({message:JSON.stringify(model)});
     },
     componentDidMount: function () {
 
-        this.props.viewModel.on("change", function (model) {
+        this.props.userCollection.on("add", function (model) {
             this.handleUpdate(model)
         }, this);
     },
@@ -121,6 +120,53 @@ var Message = React.createClass({displayName: 'Message',
             React.DOM.div( {className:"message"}, this.state.message)
         )
     }    
+});
+/** @jsx React.DOM */
+var Nerd = React.createClass({displayName: 'Nerd',
+	getInitialState: function(){
+		return {mode:'read'}
+	},
+	handleClick: function(event){
+		console.log(event.target)
+		if(event.target.getAttribute('class') === 'remove')
+			this.props.data.destroy();
+
+		if(event.target.getAttribute('class') === 'edit')
+			this.setState({mode:'edit'});
+	},
+  render: function() {
+    console.log(this.props.data)
+    return (
+      React.DOM.li( {className:"nerd"}, 
+        React.DOM.h2( {className:"nerdName"}, 
+          this.props.data.get("name")
+        ),
+        React.DOM.small(null, "shhhh... ", this.props.data.get("password")),
+   			React.DOM.a( {onClick:this.handleClick, className:"remove"}, "Remove"),
+   			React.DOM.a( {onClick:this.handleClick, className:"edit"}, "Edit")
+      )
+    );
+  }
+});
+/** @jsx React.DOM */
+var NerdList = React.createClass({displayName: 'NerdList',
+  componentDidMount: function () {
+    
+    this.props.data.on("add remove", this.forceUpdate.bind(this, null))
+
+  },
+  render: function() {
+    var nerdNodes = this.props.data.map(function (nerd) {
+      return (
+        Nerd( {data:nerd, key:nerd.get("cid")} )
+      );
+    });
+    return (
+      React.DOM.ul( {className:"nerdList"}, 
+        nerdNodes
+      )
+    );
+  }
 });
 /** @jsx React.DOM */
 var Form = React.createClass({displayName: 'Form',
@@ -133,24 +179,54 @@ var Form = React.createClass({displayName: 'Form',
     }    
 });
 /** @jsx React.DOM */
-var FormViewModel = Backbone.Model.extend({
-      urlRoot: '/api/nerds/',
-      validate: function(attrs, opts){
-        if (!attrs.name ){
-          return "Please add a name!"
-        }
-        if (!attrs.password){
-          return "Please add a password!"
-        }
-        if (attrs.strength.rate === 0){
-          return "Please add a secure password!"
-        }
-      }
 
+
+// forms model
+var FormViewModel = Backbone.Model.extend({
+    idAttribute: '_id',
+    urlRoot: '/api/nerds/',
+    validate: function(attrs, opts){
+      if (!attrs.name ){
+        return "Please add a name!"
+      }
+      if (!attrs.password){
+        return "Please add a password!"
+      }
+      if (attrs.strength.rate === 0){
+        return "Please add a secure password!"
+      }
+    }
+
+});
+
+// forms collection
+var FormCollection = Backbone.Collection.extend({
+
+  model:FormViewModel,
+  initialize: function(){
+
+  },
+  getNerds: function(callback) {
+    this.url = '/api/nerds/';
+    this.fetch({
+        success: function(collection, response, options) {
+            console.log('fetch OK');
+            if (callback)
+              callback(true)
+        },
+        error: function(collection, response, options) {
+            console.log('fetch KO');
+            if (callback)
+              callback(false)
+        }
     });
+  }
+});
 
 var PasswordController = React.createClass({displayName: 'PasswordController',
       
+      userCollection : new FormCollection(),
+
       viewModel: new FormViewModel({
         name: "",
         password: "",
@@ -169,9 +245,11 @@ var PasswordController = React.createClass({displayName: 'PasswordController',
       },
 
       componentDidMount: function () {
+
         // fetch from server
-        this.viewModel.fetch();
-        console.log("componentDidMount")
+        this.userCollection.getNerds(function(){
+          console.log('callback')
+        });
 
         // provide the subscription to the consumer here
         this.viewModel.on("change:password", this.checkPassStrength, this);
@@ -183,6 +261,7 @@ var PasswordController = React.createClass({displayName: 'PasswordController',
       },
 
       validate: function(data){
+        console.log(data)
         if (data.name && data.value){
           return data;
         }
@@ -192,8 +271,11 @@ var PasswordController = React.createClass({displayName: 'PasswordController',
 
       saveModel:function(){
         // call model save
-        console.log("Saving")
+        //console.log("Saving")
         this.viewModel.save();
+        // add to collection fetch from server
+        this.userCollection.add(this.viewModel);
+        this.userCollection.getNerds();
       },
 
       handleChange: function (data) {
@@ -208,12 +290,14 @@ var PasswordController = React.createClass({displayName: 'PasswordController',
           return (
               Form(null, 
                 Row(null, 
-                  Label( {labelName:"Password"} ),
+                  React.DOM.h1(null, "New User"),
+                  Label( {labelName:"Username"} ),
                   Input( {inputType:"text", inputName:"name", change:this.handleChange, viewModel:this.viewModel} ),
+                  Label( {labelName:"Password"} ),
                   Input( {inputType:"password", inputName:"password", change:this.handleChange, viewModel:this.viewModel} ),
                   Button( {inputType:"buttom", inputValue:"Save", inputName:"submit", save:this.saveModel} ),
                   PasswordStrengthIndicator( {viewModel:this.viewModel} ),
-                  Message( {viewModel:this.viewModel} )
+                  NerdList( {data:this.userCollection} )
                 )
               )
           )

@@ -1,19 +1,18 @@
 /** @jsx React.DOM */
 var Message = React.createClass({
 		
-		getInitialState: function() {
+	getInitialState: function() {
         return {
             message : ''
         };
     },
-		handleUpdate: function (model) {
-			console.log(JSON.stringify(model))
+	handleUpdate: function (model) {
       // stringify the contents of the model
       this.setState({message:JSON.stringify(model)});
     },
     componentDidMount: function () {
 
-        this.props.viewModel.on("change", function (model) {
+        this.props.userCollection.on("add", function (model) {
             this.handleUpdate(model)
         }, this);
     },

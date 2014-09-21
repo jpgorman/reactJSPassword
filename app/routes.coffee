@@ -16,7 +16,6 @@ module.exports = (app) ->
 	# middleware to use for all requests
 	router.use (req, res, next) ->
 		# do logging
-		console.log 'Something is happening.'
 		next() # make sure we go to the next routes and don't stop here
 
 	# routes that end in /nerds
@@ -27,6 +26,9 @@ module.exports = (app) ->
 			
 			nerd = new Nerd() 		# create a new instance of the Nerd model
 			nerd.name = req.body.name  # set the bears name (comes from the request)
+			nerd.password = req.body.password  # set the bears name (comes from the request)
+			nerd.name = req.body.name  # set the bears name (comes from the request)
+			nerd.strength.rate = req.body.rate
 
 			# save the Nerd and check for errors
 			nerd.save (err) ->
@@ -74,6 +76,8 @@ module.exports = (app) ->
 
 				# set nerds name
 				nerd.name = req.body.name
+				nerd.password = req.body.password
+				nerd.strength.rate = req.body.rate
 
 				# save nerd
 				nerd.save (err) ->

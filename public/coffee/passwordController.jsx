@@ -1,22 +1,52 @@
 /** @jsx React.DOM */
-var FormViewModel = Backbone.Model.extend({
-      urlRoot: '/api/nerds/',
-      validate: function(attrs, opts){
-        if (!attrs.name ){
-          return "Please add a name!"
-        }
-        if (!attrs.password){
-          return "Please add a password!"
-        }
-        if (attrs.strength.rate === 0){
-          return "Please add a secure password!"
-        }
-      }
 
+
+// forms model
+var FormViewModel = Backbone.Model.extend({
+    idAttribute: '_id',
+    urlRoot: '/api/nerds/',
+    validate: function(attrs, opts){
+      if (!attrs.name ){
+        return "Please add a name!"
+      }
+      if (!attrs.password){
+        return "Please add a password!"
+      }
+      if (attrs.strength.rate === 0){
+        return "Please add a secure password!"
+      }
+    }
+
+});
+
+// forms collection
+var FormCollection = Backbone.Collection.extend({
+
+  model:FormViewModel,
+  initialize: function(){
+
+  },
+  getNerds: function(callback) {
+    this.url = '/api/nerds/';
+    this.fetch({
+        success: function(collection, response, options) {
+            console.log('fetch OK');
+            if (callback)
+              callback(true)
+        },
+        error: function(collection, response, options) {
+            console.log('fetch KO');
+            if (callback)
+              callback(false)
+        }
     });
+  }
+});
 
 var PasswordController = React.createClass({
       
+      userCollection : new FormCollection(),
+
       viewModel: new FormViewModel({
         name: "",
         password: "",
@@ -35,9 +65,11 @@ var PasswordController = React.createClass({
       },
 
       componentDidMount: function () {
+
         // fetch from server
-        this.viewModel.fetch();
-        console.log("componentDidMount")
+        this.userCollection.getNerds(function(){
+          console.log('callback')
+        });
 
         // provide the subscription to the consumer here
         this.viewModel.on("change:password", this.checkPassStrength, this);
@@ -49,6 +81,7 @@ var PasswordController = React.createClass({
       },
 
       validate: function(data){
+        console.log(data)
         if (data.name && data.value){
           return data;
         }
@@ -58,8 +91,11 @@ var PasswordController = React.createClass({
 
       saveModel:function(){
         // call model save
-        console.log("Saving")
+        //console.log("Saving")
         this.viewModel.save();
+        // add to collection fetch from server
+        this.userCollection.add(this.viewModel);
+        this.userCollection.getNerds();
       },
 
       handleChange: function (data) {
@@ -74,12 +110,14 @@ var PasswordController = React.createClass({
           return (
               <Form>
                 <Row>
-                  <Label labelName="Password" />
+                  <h1>New User</h1>
+                  <Label labelName="Username" />
                   <Input inputType="text" inputName="name" change={this.handleChange} viewModel={this.viewModel} />
+                  <Label labelName="Password" />
                   <Input inputType="password" inputName="password" change={this.handleChange} viewModel={this.viewModel} />
                   <Button inputType="buttom" inputValue="Save" inputName="submit" save={this.saveModel} />
                   <PasswordStrengthIndicator viewModel={this.viewModel} />
-                  <Message viewModel={this.viewModel} />
+                  <NerdList data={this.userCollection} />
                 </ Row>
               </Form>
           )

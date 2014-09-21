@@ -9,13 +9,15 @@
 
   module.exports = function(app) {
     router.use(function(req, res, next) {
-      console.log('Something is happening.');
       return next();
     });
     router.route('/nerds').post(function(req, res) {
       var nerd;
       nerd = new Nerd();
       nerd.name = req.body.name;
+      nerd.password = req.body.password;
+      nerd.name = req.body.name;
+      nerd.strength.rate = req.body.rate;
       return nerd.save(function(err) {
         if (err) {
           res.send(err);
@@ -49,6 +51,8 @@
           return;
         }
         nerd.name = req.body.name;
+        nerd.password = req.body.password;
+        nerd.strength.rate = req.body.rate;
         return nerd.save(function(err) {
           if (err) {
             res.send(err);
